@@ -8,13 +8,13 @@
 
 ---
 
-## 🎯 Objective
+## Objective
 
 Learn the basics of networking by building a simple network with two PCs and one Cisco 2960-24TT switch, then verify communication between them.
 
 ---
 
-## 📚 What I Learned Today
+## What I Learned Today
 
 ### 1. IP Address
 
@@ -79,8 +79,8 @@ Cables carry data between devices. Two main types are used:
 Ping is a test used to check whether two devices can communicate.
 
 - Sends a small message and waits for a reply
-- Reply received → connection works ✅
-- No reply → something is wrong ❌
+- Reply received → connection works 
+- No reply → something is wrong 
 
 **Command example:**
 ping 192.168.1.2 
@@ -92,7 +92,7 @@ ping 192.168.1.2
 
 ---
 
-## 🛠️ Devices Used
+## Devices Used
 
 | Device | Model | Quantity |
 |--------|-------|----------|
@@ -100,7 +100,7 @@ ping 192.168.1.2
 | Switch | Cisco 2960-24TT | 1 |
 | Cable | Straight-through | 2 |
 
-## 🗺️ Topology
+## Topology
 
 ![Network Topology](./screenshots/topology.png)
 
@@ -110,7 +110,7 @@ ping 192.168.1.2
 
 ---
 
-## 📋 IP Addressing
+## IP Addressing
 
 | Device | IP Address | Subnet Mask |
 |--------|------------|-------------|
@@ -120,7 +120,7 @@ ping 192.168.1.2
 You can change ip and subnet
 ---
 
-## ⚙️ Steps Performed
+## Steps Performed
 
 1. Opened Cisco Packet Tracer
 2. Added one Cisco 2960-24TT switch
@@ -134,7 +134,7 @@ You can change ip and subnet
 
 ---
 
-## 🧪 Verification
+## Verification
 
 **Ping Test:**
 Pinging 192.168.1.2 with 32 bytes of data:
@@ -150,11 +150,11 @@ Reply from 192.168.1.2: bytes=32 time<1ms TTL=128
 Ping statistics for 192.168.1.2:
 Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
 
-✅ Communication successful.
+Communication successful.
 
 ---
 
-## 🧠 Key Takeaway
+## Key Takeaway
 
 > Same network = ping works directly.  
 > Different network = a router is required.
@@ -163,7 +163,7 @@ This is the most fundamental concept in networking.
 
 ---
 
-## 🌍 Real-World Connection
+## Real-World Connection
 
 Everything practiced today reflects how real networks work:
 
@@ -172,7 +172,7 @@ Everything practiced today reflects how real networks work:
 | Home WiFi | Router contains a built-in switch |
 | Office network | Many PCs connected to switches |
 | School computer lab | Devices connected within one network |
-| Café WiFi | All customers share one network |
+| Cafe WiFi | All customers share one network |
 
 ---
 
@@ -180,4 +180,4 @@ Everything practiced today reflects how real networks work:
 
 **Day 1: Completed ✅**
 
-**Next:** Day 2 — Router Basics 🚀
+**Next:** Day 2 — Router Basics 
