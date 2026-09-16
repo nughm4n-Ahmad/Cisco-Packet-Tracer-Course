@@ -100,6 +100,14 @@ ping 192.168.1.2
 | Switch | Cisco 2960-24TT | 1 |
 | Cable | Straight-through | 2 |
 
+## 🗺️ Topology
+
+![Network Topology](./screenshots/topology.png)
+
+*Figure 1: Day 1 Network — 2 PCs connected via Cisco 2960-24TT switch*
+
+---
+
 ---
 
 ## 📋 IP Addressing
