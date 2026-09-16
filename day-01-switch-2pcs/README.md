@@ -176,14 +176,6 @@ Everything practiced today reflects how real networks work:
 
 ---
 
-## 📁 Folder Contents
-
-- `README.md` — this lesson file
-- `day1.pkt` — Packet Tracer project file
-- `screenshots/` — topology 
-
----
-
 ## ✅ Status
 
 **Day 1: Completed ✅**
