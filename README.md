@@ -17,7 +17,7 @@ My 90-day Cisco networking journey.
 
 | Day | Topic | Link |
 |-----|-------|------|
-| 01 | Switch + 2 PCs | [View](./day-01-switch-2pcs/) ✅ |
+| 01 | Switch + 2 PCs | [Open Day 1 →](./day-01-switch-2pcs/) ✅ |
 | 02 | Router Basics | Coming soon |
 
 
