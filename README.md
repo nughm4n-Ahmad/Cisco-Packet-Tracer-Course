@@ -9,7 +9,7 @@ My 90-day Cisco networking journey.
 
 ## 📈 Progress
 
-▓░░░░░░░░░░░░░░░░░░░ 1/90 days
+▓▓░░░░░░░░░░░░░░░░░░ 2/90 days
 
 ---
 
@@ -18,8 +18,21 @@ My 90-day Cisco networking journey.
 | Day | Topic | Link |
 |-----|-------|------|
 | 01 | Switch + 2 PCs | [Open Day 1 →](./day-01-switch-2pcs/) ✅ |
-| 02 | Router Basics | Coming soon |
+| 02 | Router Basics | [Open Day 2 →](./day-02-router-basics/) ✅ |
+| 03 | DHCP Server | Coming soon |
 
+---
+
+## 🛠️ Skills Learned So Far
+
+- ✅ IP Addressing & Subnetting
+- ✅ Switch configuration
+- ✅ Router configuration
+- ✅ Default Gateway setup
+- ✅ Ping & connectivity testing
+- ✅ TTL (Time To Live)
+- ✅ ARP (Address Resolution Protocol)
+- ✅ Cross-network communication
 
 ---
 
