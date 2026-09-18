@@ -2,7 +2,7 @@
 
 My 90-day Cisco networking journey.
 
-![Progress](https://img.shields.io/badge/Days-1%2F90-blue)
+![Progress](https://img.shields.io/badge/Days-2%2F90-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
