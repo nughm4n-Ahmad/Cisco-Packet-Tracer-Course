@@ -30,8 +30,8 @@ Learn how a router connects two different networks and enables communication bet
 |--------|------|-------------|
 | PC1 | FastEthernet0 | Switch1 FastEthernet0/1 |
 | Switch1 | GigabitEthernet0/1 | Router0 GigabitEthernet0/0/1 |
-| Router0 | GigabitEthernet0/0/1 | Switch1 (left side, PC1's network) |
-| Router0 | GigabitEthernet0/0/0 | Switch2 (right side, PC0's network) |
+| Router0 | GigabitEthernet0/0/1 | Switch1 (left side — PC1's network) |
+| Router0 | GigabitEthernet0/0/0 | Switch2 (right side — PC0's network) |
 | Switch2 | GigabitEthernet0/1 | Router0 GigabitEthernet0/0/0 |
 | Switch2 | FastEthernet0/1 | PC0 FastEthernet0 |
 | PC0 | FastEthernet0 | Switch2 FastEthernet0/1 |
@@ -106,9 +106,9 @@ TTL is a number in each packet that decreases by 1 per router.
 
 | TTL Value | Meaning |
 |-----------|---------|
-| 128       | Same network (no router) |
-| 127       | Passed through **1 router** |
-| 126       | Passed through **2 routers** |
+| 128 | Same network (no router) |
+| 127 | Passed through **1 router** |
+| 126 | Passed through **2 routers** |
 
 **Example:** If TTL = 127, the packet passed through 1 router.
 
@@ -116,7 +116,7 @@ TTL is a number in each packet that decreases by 1 per router.
 
 ### 6. ARP (Address Resolution Protocol) — Why the First Ping Failed
 
-When you ping a device for the first time, you may see one packet lost.  
+When you ping a device for the first time, you may see one packet lost.
 **This is completely normal.**
 
 **Why?**
@@ -129,10 +129,10 @@ When you ping a device for the first time, you may see one packet lost.
 
 **What you see:**
 
-| Ping Attempt | Result                    | Reason            |
-|              |                           |                   |
-| 1st ping     |  1 packet lost (25% loss) | ARP resolving MAC |
-| 2nd ping     |  0% loss                  | MAC already known |
+| Ping Attempt | Result | Reason |
+|--------------|--------|--------|
+| 1st ping | ❌ 1 packet lost (25% loss) | ARP resolving MAC |
+| 2nd ping | ✅ 0% loss | MAC already known |
 
 **Key takeaway:** ARP is the reason for the first packet loss. It's not an error.
 
@@ -140,62 +140,84 @@ When you ping a device for the first time, you may see one packet lost.
 
 ## 🗺️ Topology
 
+### Layout
+
+```
+[PC1] ── [Switch1] ── [Router0 G0/0/1]     [Router0 G0/0/0] ── [Switch2] ── [PC0]
+192.168.1.2                                                    192.168.2.2
+Gateway: 192.168.1.1                                           Gateway: 192.168.2.1
+```
 
 ---
 
 ## 📋 IP Addressing
 
-| Device        | IP Address  | Subnet Mask   | Gateway     |
-|               |             |               |             |
-| PC1           | 192.168.1.2 | 255.255.255.0 | 192.168.1.1 |
+| Device | IP Address | Subnet Mask | Gateway |
+|--------|------------|-------------|---------|
+| PC1 | 192.168.1.2 | 255.255.255.0 | 192.168.1.1 |
 | Router G0/0/1 | 192.168.1.1 | 255.255.255.0 | — |
 | Router G0/0/0 | 192.168.2.1 | 255.255.255.0 | — |
-| PC0           | 192.168.2.2 | 255.255.255.0 | 192.168.2.1 |
+| PC0 | 192.168.2.2 | 255.255.255.0 | 192.168.2.1 |
 
 ---
 
 ## ⚙️ Router Configuration
+
+```cisco
 enable
 configure terminal
 hostname R1
 
 interface gigabitEthernet 0/0/0
-ip address 192.168.2.1 255.255.255.0
-no shutdown
-exit
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+ exit
 
 interface gigabitEthernet 0/0/1
-ip address 192.168.1.1 255.255.255.0
-no shutdown
-exit
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+ exit
 
 end
 write memory
+```
+
+---
+
 ## 🧪 Verification
 
 ### Router Interface Status
+
+```cisco
 show ip interface brief
+```
 
-Interface IP-Address OK? Status Protocol
-GigabitEthernet0/0/0 192.168.2.1 YES up up
-GigabitEthernet0/0/1 192.168.1.1 YES up up
-
+```
+Interface              IP-Address      OK? Status     Protocol
+GigabitEthernet0/0/0   192.168.2.1     YES up         up
+GigabitEthernet0/0/1   192.168.1.1     YES up         up
+```
 
 Both interfaces show `up / up` ✅
 
 ---
 
 ### Ping From PC0 to PC1 (Different Networks)
+
+```
 Pinging 192.168.1.2 with 32 bytes of data:
 
-Request timed out. ← ARP resolving
+Request timed out.                              ← ARP resolving
 Reply from 192.168.1.2: bytes=32 time<1ms TTL=127
 Reply from 192.168.1.2: bytes=32 time<1ms TTL=127
 Reply from 192.168.1.2: bytes=32 time<1ms TTL=127
 
 Packets: Sent = 4, Received = 3, Lost = 1 (25% loss)
+```
 
 **Second ping — ARP resolved:**
+
+```
 Pinging 192.168.1.2 with 32 bytes of data:
 
 Reply from 192.168.1.2: bytes=32 time<1ms TTL=127
@@ -204,14 +226,15 @@ Reply from 192.168.1.2: bytes=32 time<1ms TTL=127
 Reply from 192.168.1.2: bytes=32 time<1ms TTL=127
 
 Packets: Sent = 4, Received = 4, Lost = 0 (0% loss) ✅
+```
 
-✅ **TTL=127 proves the packet passed through 1 router.**
+✅ **TTL = 127 proves the packet passed through 1 router.**
 
 ---
 
 ## 🧠 Key Takeaways
 
-> **Same network = ping works directly.**  
+> **Same network = ping works directly.**
 > **Different network = router + default gateway are required.**
 
 > **First ping loss is normal — it's ARP resolving MAC addresses.**
@@ -222,27 +245,28 @@ Packets: Sent = 4, Received = 4, Lost = 0 (0% loss) ✅
 
 ## 🌍 Real-World Connection
 
-| Real-World Scenario | Same Concept                           |
-|                     |                                        |
-| Home router         | Connects home network to internet      |
-| Office network      | Router links different departments     |
-| ISP backbone        | Routers link cities and countries      |
-| Internet            | Millions of routers forwarding packets |
+| Real-World Scenario | Same Concept |
+|---------------------|--------------|
+| Home router | Connects home network to internet |
+| Office network | Router links different departments |
+| ISP backbone | Routers link cities and countries |
+| Internet | Millions of routers forwarding packets |
 
 ---
 
 ## 🚨 Troubleshooting Notes
 
-| Problem                      | Cause                      | Fix                         |
-|                              |                            |                             |
-| Ping to gateway fails        | Router port not configured | Assign IP + `no shutdown`   |
-| Ping to other PC fails       | Gateway missing on PC      | Add default gateway         |
-| Port shows `unassigned`      | IP not assigned            | Enter `ip address ...`      |
-| Port shows `down`            | Cable or shutdown          | Check cable + `no shutdown` |
-| Both ports up but ping fails | IPs on wrong ports         | Match IP to cable side      |
-| First ping fails             | ARP resolving              | Normal — retry              |
+| Problem | Cause | Fix |
+|---------|-------|-----|
+| Ping to gateway fails | Router port not configured | Assign IP + `no shutdown` |
+| Ping to other PC fails | Gateway missing on PC | Add default gateway |
+| Port shows `unassigned` | IP not assigned | Enter `ip address ...` |
+| Port shows `down` | Cable or shutdown | Check cable + `no shutdown` |
+| Both ports up but ping fails | IPs on wrong ports | Match IP to cable side |
+| First ping fails | ARP resolving | Normal — retry |
 
 ---
+
 ## ✅ Status
 
 **Day 2: Completed ✅**
