@@ -140,6 +140,9 @@ When you ping a device for the first time, you may see one packet lost.
 
 ## 🗺️ Topology
 ![Network Topology](./screenshots/topology.png)
+
+## File of this lab
+- `day2.pkt` — Packet Tracer project file
 ### Layout
 
 ```
