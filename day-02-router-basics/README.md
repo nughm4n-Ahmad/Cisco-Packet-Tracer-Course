@@ -139,7 +139,7 @@ When you ping a device for the first time, you may see one packet lost.
 ---
 
 ## 🗺️ Topology
-
+![Network Topology](./screenshots/topology.png)
 ### Layout
 
 ```
